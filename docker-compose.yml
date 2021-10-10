@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+    app:
+        build: squirrel-camera-git
+        restart: always
+        # runtime: nvidia
+        ports:
+            - 8080:80/tcp
+            - 10010-10019:10010-10019/udp
+        environment:
+            - RTP_PORT_RANGE=10010-10019
+            - PUBLIC_IP=getmypublicip # set to `getmypublicip` or specify manually
+    ffmpeg:
+        image: willprice/nvidia-ffmpeg:latest
+        restart: always
+        runtime: nvidia
+        entrypoint: /bin/sh
+        command: /stream.sh
+        volumes:
+            - ./config/stream-h264-nvenc.sh:/stream.sh:ro
+            - ./config/overlay.png:/overlay.png:ro
+        environment:
+            # - STREAM_RES=1920x1080
+            - STREAM_WIDTH=1920
+            - STREAM_HEIGHT=1080
+            - STREAM_BITRATE=5000 # 4000 is good, 5000 for 1080p
+            - RTSP_URL=

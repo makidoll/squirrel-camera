@@ -1,0 +1,56 @@
+general: {
+	# configs_folder = "/etc/janus"
+	# plugins_folder = "/usr/lib/janus/plugins"
+	# transports_folder = "/usr/lib/janus/transports"
+	# events_folder = "/usr/lib/janus/events"
+	# loggers_folder = "/usr/lib/janus/loggers"
+
+	# log_to_stdout = false
+	debug_level = 4
+	
+	# protected_folders = [
+	# 	"/bin",
+	# 	"/boot",
+	# 	"/dev",
+	# 	"/etc",
+	# 	"/initrd",
+	# 	"/lib",
+	# 	"/lib32",
+	# 	"/lib64",
+	# 	"/proc",
+	# 	"/sbin",
+	# 	"/sys",
+	# 	"/usr",
+	# 	"/var",
+	# 	"/opt/janus/bin",
+	# 	"/opt/janus/etc",
+	# 	"/opt/janus/include",
+	# 	"/opt/janus/lib",
+	# 	"/opt/janus/lib32",
+	# 	"/opt/janus/lib64",
+	# 	"/opt/janus/sbin"
+	# ]
+}
+
+media: {	
+	# https://tools.ietf.org/html/draft-ietf-tsvwg-rtcweb-qos-18#page-6
+	dscp = 34
+}
+
+nat: {
+	nice_debug = false
+	ice_ignore_list = "vmnet"
+	ignore_mdns = true
+}
+
+plugins: {
+	# ls -p /usr/local/lib/janus/plugins | grep ".so$" | tr '\n' ','
+	# this is filled out automatically by ecosystem.config.js
+	# [plugins]
+}
+
+transports: {
+	# ls -p /usr/local/lib/janus/transports | grep ".so$" | tr '\n' ','
+	# this is filled out automatically by ecosystem.config.js
+	# [transports]
+}
