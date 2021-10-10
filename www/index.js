@@ -157,6 +157,12 @@ const startJanus = async (streamEl, streamName, destroyedCallback) => {
 			return params;
 		}, {});
 
+	// send escape key through any iframes
+
+	window.addEventListener("keydown", event => {
+		if (event.key == "Escape") window.top.postMessage("escape", "*");
+	});
+
 	// make sure the stream is playing
 
 	const streamEl = document.getElementById("stream");
@@ -167,6 +173,7 @@ const startJanus = async (streamEl, streamName, destroyedCallback) => {
 	});
 
 	setInterval(() => {
+		if (!playing.video) return;
 		if (streamEl.paused) {
 			try {
 				streamEl.play();
