@@ -160,7 +160,9 @@ const startJanus = async (streamEl, streamName, destroyedCallback) => {
 	// send escape key through any iframes
 
 	window.addEventListener("keydown", event => {
-		if (event.key == "Escape") window.top.postMessage("escape", "*");
+		if (event.key == "Escape") {
+			window.top.postMessage("squirrels-keydown-escape", "*");
+		}
 	});
 
 	// make sure the stream is playing
